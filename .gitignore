@@ -18,3 +18,4 @@ database/*.sqlite
 # Custom
 .DS_Store
 public/*.html
+recipes/*.gz
