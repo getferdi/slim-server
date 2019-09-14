@@ -1,0 +1,58 @@
+@layout('layouts.main')
+
+@section('content')
+<style>
+  ol,
+  p {
+    margin: 0.5rem 0;
+  }
+
+</style>
+<h1>ferdi-slim-server</h1>
+<p>You are accessing a custom <a href="https://github.com/kytwb/ferdi">Ferdi</a> slim server.</p>
+<p>
+  To use this server in your Ferdi client, <a href="ferdi://settings/app">open Ferdi's settings</a> and as the
+  <code>server</code>, enter <code id="server"></code>
+</p>
+<p>
+  By using this server, you accept our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
+</p>
+<p>
+  You can also choose one of the following actions:
+</p>
+<ul>
+  <li>
+    <a href="/new">Upload a new recipe</a>
+  </li>
+  <li>
+    <a href="/github">Create a new recipe from a GitHub repository</a>
+  </li>
+  <li>
+    <a href="/admin/dashboard">Open the admin dashboard</a>
+  </li>
+  <li>
+    <a href="/admin/login">Login to an admin user</a>
+  </li>
+  <li>
+    <a href="/admin/register">Register a new admin account</a>
+  </li>
+</ul>
+
+<br />
+<small>
+  <a href="https://github.com/vantezzen/ferdi-slim-server">ferdi-slim-server</a> is a project by <a
+    href="https://vantezzen.io">vantezzen</a>.
+</small>
+
+<script>
+  // Get server URL for current location
+  let server = location.href.replace('/index.html', '');
+  if (server[server.length - 1] == '/') {
+    server = server.substr(0, server.length - 1)
+  }
+
+  // Show on page
+  document.getElementById('server').innerText = server;
+
+</script>
+@endsection

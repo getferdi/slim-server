@@ -1,0 +1,42 @@
+@layout('layouts.main')
+
+@section('content')
+<h1>Admin Dashboard</h1>
+
+<a href="/admin/logout" class="button">Logout</a>
+
+<h3>Recipes to check</h3>
+<table>
+    <tr>
+        <th>
+            Recipe ID
+        </th>
+        <th>
+            Download
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+    @each(recipe in recipes)
+        <tr>
+            <td>
+                {{ recipe.recipeId }}
+            </td>
+            <td>
+                <a href="/admin/download/{{ recipe.recipeId }}" class="button">
+                    Download
+                </a>
+            </td>
+            <td>
+                <a href="/admin/accept/{{ recipe.recipeId }}" class="button">
+                    Accept
+                </a>
+                <a href="/admin/delete/{{ recipe.recipeId }}" class="button">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    @endeach
+</table>
+@endsection

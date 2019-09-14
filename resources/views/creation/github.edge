@@ -1,0 +1,36 @@
+@layout('layouts.main')
+
+@section('content')
+<h1>Create a new recipe form a GitHub repo</h1>
+<p>Please create a recipe using <a href="https://github.com/meetfranz/plugins/blob/master/docs/integration.md">the
+    official Franz guide</a>, then upload it as a GitHub repository.</p>
+@include('partials.notification')
+@if(flashMessage('error'))
+<div class="alert">
+  {{ flashMessage('error') }}
+</div>
+@endif
+@if(old('message'))
+<div class="alert alert-{{ old('type') }}">
+  {{ old('message') }}
+</div>
+@endif
+<form action="github" method="post" enctype="multipart/form-data">
+  <label for="link">GitHub repository</label><br />
+  <input type="text" name="link" placeholder="https://github.com/example/franz-recipe-service" value="{{ old('link', '') }}" required><br />
+
+  <label for="png">Link to PNG logo*</label><br />
+  <input type="text" name="png" placeholder="https://.../logo.png" value="{{ old('png', '') }}" required><br />
+
+  <label for="svg">Link to SVG logo*</label><br />
+  <input type="text" name="svg" placeholder="https://.../logo.svg" value="{{ old('svg', '') }}" required><br />
+  *These images must be publicly availible and have CORS enabled in order to work.<br /><br />
+
+  By creating a new recipe, you agree to the <a
+  href="/terms">terms of service</a> and <a
+  href="/privacy">privacy policy</a>
+  <button type="submit" id="submitbutton">Create recipe</button>
+</form>
+
+<script src="js/new.js"></script>
+@endsection

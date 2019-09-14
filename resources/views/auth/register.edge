@@ -1,0 +1,60 @@
+@layout('layouts.main')
+
+@section('content')
+<h2>Register</h2>
+@if(flashMessage('error'))
+<div class="alert">
+  {{ flashMessage('error') }}
+</div>
+@endif
+@if(old('message'))
+<div class="alert alert-{{ old('type') }}">
+  {{ old('message') }}
+</div>
+@endif
+@include('partials.notification')
+<form action="/admin/register" method="POST">
+  {{ csrfField() }}
+  <div>
+    <div>
+      <input type="email" placeholder="mail@example.com" name="email" value="{{ old('email', '') }}" required>
+    </div>
+    {{ elIf('<div>$self</div>', getErrorFor('email'), hasErrorFor('email')) }}
+  </div>
+  <div>
+    <div>
+      <input type="text" placeholder="Username" name="username" value="{{ old('username', '') }}" required>
+    </div>
+    {{ elIf('<div>$self</div>', getErrorFor('username'), hasErrorFor('username')) }}
+  </div>
+  <div>
+    <div>
+      <input type="password" placeholder="Password" name="password" required>
+    </div>
+    {{ elIf('<div>$self</div>', getErrorFor('password'), hasErrorFor('password')) }}
+  </div>
+  <div>
+    <div>
+      <input type="text" placeholder="Authentification key" name="key" required>
+    </div>
+    {{ elIf('<div>$self</div>', getErrorFor('key'), hasErrorFor('key')) }}
+  </div>
+  <div>
+    <div>
+      <span>
+        <input type="checkbox" name="terms" required> I agree to the <a
+          href="/terms">terms of service</a> and <a
+          href="/privacy">privacy policy</a>
+      </span>
+    </div>
+    {{ elIf('<div>$self</div>', getErrorFor('terms'), hasErrorFor('terms')) }}
+  </div>
+  <div>
+    <button>Register</button>
+  </div>
+  <div>
+    <span>Already have and account ?</span>
+    <a href="/login">Login</a>
+  </div>
+</form>
+@endsection

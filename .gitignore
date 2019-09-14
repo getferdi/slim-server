@@ -1,0 +1,20 @@
+# Node modules
+node_modules
+package-lock.json
+
+# Adonis directory for storing tmp files
+tmp
+
+# Environment variables, never commit this file
+.env
+
+# Sqlite databases
+database/*.sqlite
+
+# VSCode & Webstorm history directories
+.history
+.idea
+
+# Custom
+.DS_Store
+public/*.html

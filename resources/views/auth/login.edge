@@ -1,0 +1,42 @@
+@layout('layouts.main')
+
+@section('content')
+<div>
+  <h2>Login</h2>
+  @if(flashMessage('error'))
+  <div class="alert">
+    {{ flashMessage('error') }}
+  </div>
+  @endif
+  @if(old('message'))
+  <div class="alert alert-{{ old('type') }}">
+    {{ old('message') }}
+  </div>
+  @endif
+  @include('partials.notification')
+  <form action="/admin/login" method="POST">
+    {{ csrfField() }}
+    <div>
+      <label>Username or E-Mail</label>
+      <div>
+        <input type="text" class="{{ hasErrorFor('identifier') ? 'is-invalid' : '' }}"
+          value="{{ old('identifier', '') }}" placeholder="Username or E-Mail" name="identifier">
+      </div>
+    </div>
+    <div>
+      <label>Password</label>
+      <div>
+        <input type="password" class="{{ hasErrorFor('password') ? 'is-invalid' : '' }}" placeholder="*********"
+          name="password">
+      </div>
+    </div>
+    <div>
+      <button class="btn btn-primary submit-btn btn-block">Login</button>
+    </div>
+    <div class="text-block text-center my-3">
+      <span class="text-small font-weight-semibold">Not yet a member?</span>
+      <a href="/admin/register" class="text-black text-small">Create new account</a>
+    </div>
+  </form>
+</div>
+@endsection
